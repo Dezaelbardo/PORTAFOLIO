@@ -1037,7 +1037,7 @@ footer{
           <div class="tl-period">2024 — 2025</div>
           <div class="tl-role">Post-Productor audiovisual y animador 2D</div>
           <div class="tl-company">Maneky Studio — Lima</div>
-        
+        </div>
           <div class="timeline-item reveal reveal-delay-4">
           <div class="tl-period">2023 — 2024</div>
           <div class="tl-role">Diseñador Gráfico & Audiovisual</div>
@@ -1179,34 +1179,33 @@ footer{
       </div>
     </div>
  <div class="reveal reveal-delay-1">
-  <!-- Acción conectada a FormSubmit -->
-  <!-- Cambia 'tuemail@gmail.com' por el tuyo -->
-<form action="https://formsubmit.co/dezajeanfranco@gmail.com" method="POST">
+  <!-- Formulario conectado a FormSubmit con tu correo -->
+  <form action="https://formsubmit.co/dezajeanfranco@gmail.com" method="POST">
     
-    <!-- Configuraciones extra de FormSubmit -->
-    <input type="hidden" name="_subject" value="¡Nuevo mensaje de tu Portafolio!">
+    <!-- Configuración interna para que funcione bien -->
+    <input type="hidden" name="_subject" value="NUEVO PROYECTO: Mensaje desde Portafolio">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_next" value="https://tuusuario.github.io/tu-repositorio/"> <!-- URL de tu web para que regrese después de enviar -->
 
     <div class="form-grid">
       <div class="form-group">
         <label>Nombre</label>
-        <input type="text" name="name" placeholder="Tu nombre" required>
+        <input type="text" name="Nombre" placeholder="Tu nombre" required>
       </div>
       <div class="form-group">
         <label>Email</label>
-        <input type="email" name="email" placeholder="tu@email.com" required>
+        <input type="email" name="Email" placeholder="tu@email.com" required>
       </div>
     </div>
+    
     <div class="form-grid">
       <div class="form-group">
         <label>Teléfono</label>
-        <input type="tel" name="phone" placeholder="+51 ...">
+        <input type="tel" name="Telefono" placeholder="+51 ...">
       </div>
       <div class="form-group">
         <label>Servicio</label>
-        <select name="service">
+        <select name="Servicio Solicitado">
           <option value="Branding">Branding</option>
           <option value="Motion Design">Motion Design</option>
           <option value="UI / UX">UI / UX</option>
@@ -1215,10 +1214,13 @@ footer{
         </select>
       </div>
     </div>
+    
     <div class="form-group">
       <label>Mensaje</label>
-      <textarea name="message" placeholder="Cuéntame tu proyecto..." required></textarea>
+      <textarea name="Mensaje" placeholder="Cuéntame tu proyecto..." required></textarea>
     </div>
+    
+    <!-- El botón ahora es tipo SUBMIT para que envíe los datos -->
     <button type="submit" class="btn-submit">Enviar mensaje →</button>
   </form>
 </div>
