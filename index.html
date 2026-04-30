@@ -1019,24 +1019,35 @@ footer{
       <div class="timeline-col-title">Experiencia laboral</div>
       <div class="timeline-items">
         <div class="timeline-item reveal">
-          <div class="tl-period">2022 — Presente</div>
+          <div class="tl-period">2026 — Presente</div>
           <div class="tl-role">Diseñador Gráfico Senior · Freelance</div>
           <div class="tl-company">Independiente — Lima (Remoto)</div>
         </div>
-        <div class="timeline-item reveal reveal-delay-1">
-          <div class="tl-period">2021 — 2023</div>
+          <div class="timeline-item reveal reveal-delay-1">
+          <div class="tl-period">2025 — 2026</div>
+          <div class="tl-role">Diseñador Gráfico Senior · Remoto</div>
+          <div class="tl-company"> ALPA — Lima</div>
+        </div>
+          <div class="timeline-item reveal reveal-delay-2">
+          <div class="tl-period">2025 — 2026</div>
+          <div class="tl-role">Diseñador Gráfico Senior · Remoto</div>
+          <div class="tl-company">Pure Alpaca — Lima</div>
+        </div>
+          <div class="timeline-item reveal reveal-delay-3">
+          <div class="tl-period">2024 — 2025</div>
+          <div class="tl-role">Post-Productor audiovisual y animador 2D</div>
+          <div class="tl-company">Maneky Studio — Lima</div>
+        
+          <div class="timeline-item reveal reveal-delay-4">
+          <div class="tl-period">2023 — 2024</div>
           <div class="tl-role">Diseñador Gráfico & Audiovisual</div>
           <div class="tl-company">Del Barrio Producciones — Lima</div>
         </div>
-        <div class="timeline-item reveal reveal-delay-2">
-          <div class="tl-period">2020 — 2022</div>
-          <div class="tl-role">Diseñador Visual</div>
-          <div class="tl-company">Maneky Studio — Lima</div>
+          <div class="timeline-item reveal reveal-delay-5">
+          <div class="tl-period">2022 — 2016</div>
+          <div class="tl-role">Diseñador Gráfico & Audiovisual</div>
+          <div class="tl-company">Empresas varias — Freelance</div>
         </div>
-        <div class="timeline-item reveal reveal-delay-3">
-          <div class="tl-period">2019 — 2021</div>
-          <div class="tl-role">Diseñador Gráfico Junior · Freelance</div>
-          <div class="tl-company">Pure Alpaca / ALPA — Lima</div>
         </div>
       </div>
     </div>
@@ -1167,39 +1178,49 @@ footer{
         </div>
       </div>
     </div>
-    <div class="reveal reveal-delay-1">
-      <div class="form-grid">
-        <div class="form-group">
-          <label>Nombre</label>
-          <input type="text" placeholder="Tu nombre">
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" placeholder="tu@email.com">
-        </div>
-      </div>
-      <div class="form-grid">
-        <div class="form-group">
-          <label>Teléfono</label>
-          <input type="tel" placeholder="+51 ...">
-        </div>
-        <div class="form-group">
-          <label>Servicio</label>
-          <select>
-            <option>Branding</option>
-            <option>Motion Design</option>
-            <option>UI / UX</option>
-            <option>Editorial</option>
-            <option>Otro</option>
-          </select>
-        </div>
+ <div class="reveal reveal-delay-1">
+  <!-- Acción conectada a FormSubmit -->
+  <form action="https://formsubmit.co/dezajeanfranco@gmail.com" method="POST">
+    
+    <!-- Configuraciones extra de FormSubmit -->
+    <input type="hidden" name="_subject" value="¡Nuevo mensaje de tu Portafolio!">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="https://tuusuario.github.io/tu-repositorio/"> <!-- URL de tu web para que regrese después de enviar -->
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" name="name" placeholder="Tu nombre" required>
       </div>
       <div class="form-group">
-        <label>Mensaje</label>
-        <textarea placeholder="Cuéntame tu proyecto..."></textarea>
+        <label>Email</label>
+        <input type="email" name="email" placeholder="tu@email.com" required>
       </div>
-      <button class="btn-submit">Enviar mensaje →</button>
     </div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Teléfono</label>
+        <input type="tel" name="phone" placeholder="+51 ...">
+      </div>
+      <div class="form-group">
+        <label>Servicio</label>
+        <select name="service">
+          <option value="Branding">Branding</option>
+          <option value="Motion Design">Motion Design</option>
+          <option value="UI / UX">UI / UX</option>
+          <option value="Editorial">Editorial</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Mensaje</label>
+      <textarea name="message" placeholder="Cuéntame tu proyecto..." required></textarea>
+    </div>
+    <button type="submit" class="btn-submit">Enviar mensaje →</button>
+  </form>
+</div>
   </div>
 </section>
 
