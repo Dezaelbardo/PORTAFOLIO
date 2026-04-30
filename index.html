@@ -766,6 +766,34 @@ footer{
   </span>
   Mi Experiencia
 </div>
+      .exp-col-title-icon{
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+
+  background:rgba(124,92,252,.12);
+  border:1px solid rgba(124,92,252,.25);
+
+  transition:.3s;
+}
+
+.exp-col-title-icon svg{
+  width:22px;
+  height:22px;
+  stroke:var(--accent);
+}
+
+/* hover pro */
+.exp-col-title-icon:hover{
+  transform:scale(1.1);
+}
+
+.exp-col-title-icon:hover svg{
+  stroke:#fff;
+}
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
