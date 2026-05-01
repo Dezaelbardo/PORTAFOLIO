@@ -32,18 +32,28 @@ body{
 /* CURSOR */
 body{cursor:none;}
 .cursor{
-  position:fixed;width:12px;height:12px;
-  background:var(--accent);border-radius:50%;
-  pointer-events:none;z-index:9999;
-  transition:transform .15s ease;
-  transform:translate(-50%,-50%);
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: #c8f542; /* Cambiado a blanco para que la inversión sea total */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform .15s ease;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference; /* Añadido: Esto crea el efecto de inversión */
 }
 .cursor-ring{
-  position:fixed;width:40px;height:40px;
-  border:1px solid rgba(200,245,66,.4);
-  border-radius:50%;pointer-events:none;z-index:9998;
-  transition:transform .4s ease,width .3s,height .3s;
-  transform:translate(-50%,-50%);
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #c8f542; /* Cambiado a blanco */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform .4s ease, width .3s, height .3s;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference; /* Añadido: El anillo también invertirá colores */
 }
 .cursor.expand{transform:translate(-50%,-50%) scale(3);}
 .cursor-ring.expand{width:60px;height:60px;}
@@ -57,10 +67,17 @@ nav{
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
 }
+.nav-left-group {
+  display: flex;       /* Alinea en fila */
+  align-items: center; /* Centra verticalmente el logo con el botón */
+  gap: 1.5rem;         /* Espacio entre el logo y el botón */
+}
 .nav-logo{
   font-family:'Bebas Neue',sans-serif;
   font-size:1.5rem;letter-spacing:3px;
   color:var(--accent);
+  margin-bottom: 0;    /* Elimina cualquier margen inferior que los esté separando */
+  line-height: 1;      /* Ajusta la altura de línea para que no empuje al botón */
 }
 .nav-links{display:flex;gap:2.5rem;list-style:none;}
 .nav-links a{
@@ -75,6 +92,7 @@ nav{
   font-size:.8rem;font-weight:500;letter-spacing:1px;
   text-transform:uppercase;text-decoration:none;
   transition:background .3s,transform .2s;
+  white-space: nowrap; /* Evita que el texto del botón se rompa en dos líneas */
 }
 .nav-cta:hover{background:#d4ff55;transform:scale(1.03);}
 
@@ -114,6 +132,10 @@ nav{
   font-size:clamp(2rem,4vw,3.5rem);
   font-weight:300;font-style:italic;
   display:block;
+}
+.hero-title .sub-title {
+  display: block; /* Fuerza a que Visual Designer baje */
+  margin-top: -5px; /* Ajuste fino para pegar aún más la línea si lo deseas */
 }
 .hero-desc{
   color:var(--muted);font-size:1rem;
@@ -596,15 +618,18 @@ footer{
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">DJ</div>
-  <ul class="nav-links">
+  <div class="nav-left-group">
+    <div class="nav-logo">DJ</div>
+    <a href="#inicio" class="nav-cta">INICIO</a>
+  </div>
+   <ul class="nav-links">
     <li><a href="#sobre-mi">Sobre mí</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#galeria">Portafolio</a></li>
     <li><a href="#clientes">Clientes</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
-  <a href="mailto:dezajeanfranco@gmail.com" class="nav-cta">Hire Me</a>
+ <div class="nav-placeholder"></div>
 </nav>
 
 <!-- HERO -->
@@ -614,11 +639,12 @@ footer{
     <h1 class="hero-title">
       Jean Deza
       <em>Diseñador Gráfico</em>
-      Audiovisual <span style="color:var(--muted);font-size:.55em;font-family:'Space Mono',monospace;letter-spacing:2px;">+</span> Visual Designer
-    </h1>
+      Audiovisual <span style="color:var(--muted);font-size:.55em;font-family:'Space Mono',monospace;letter-spacing:2px;"></span>+
+   <span class="sub-title">Visual Designer</span>
+</h1>
     <p class="hero-desc">Diseño identidades visuales, piezas audiovisuales y gráficas que conectan marcas con personas — para medios digitales y físicos. El diseño, para mí, es una forma de expresar emociones y transmitir arte, conocimiento y cultura al mundo.</p>
     <div class="hero-btns">
-      <a href="https://www.behance.net/Dezajean" target="_blank" class="btn-primary">Ver mi trabajo ↓</a>
+      <a href="https://www.behance.net/gallery/221452945/PORTAFOLIO" target="_blank" class="btn-primary">Ver mi trabajo ↓</a>
       <a href="#contacto" class="btn-outline">Contactar</a>
     </div>
   </div>
@@ -789,9 +815,12 @@ footer{
             <span style="font-family:'Bebas Neue',sans-serif;letter-spacing:4px;font-size:1rem;color:rgba(255,255,255,0.7)">IDENTIDAD NOCTURNA</span>
           </div>
           <div class="card-overlay">
-            <div class="card-view-btn">Ver proyecto →</div>
-          </div>
-        </div>
+  <div class="card-view-btn" 
+       onclick="window.open('identidad-nocturna/', '_blank')"
+       style="cursor:pointer;">
+    Ver proyecto →
+  </div>
+</div>
         <div class="card-info">
           <div class="card-cat">Branding · 2025</div>
           <div class="card-title">Identidad Nocturna — Club Concept</div>
