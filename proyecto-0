@@ -1,4 +1,3 @@
-PORTAFOLIO / proyecto0 / index.html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -397,7 +396,7 @@ footer{
 
 <!-- ===================== NAV ===================== -->
 <nav>
-  <a href="../index.html" class="nav-logo">DJ</a>
+  <a href="../index.html" class="nav-logo">JD</a>
   <a href="../index.html" class="nav-back"><span>←</span> Volver al portafolio</a>
   <div class="nav-right">
     <a href="../index.html#contacto" class="nav-cta">Contactar</a>
