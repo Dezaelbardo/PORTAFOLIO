@@ -29,34 +29,32 @@ body{
   line-height:1.6;
   overflow-x:hidden;
 }
-/* CURSOR */
-body{cursor:none;}
-.cursor{
-  position: fixed;
-  width: 12px;
-  height: 12px;
-  background: #c8f542; /* Cambiado a blanco para que la inversión sea total */
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transition: transform .15s ease;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: difference; /* Añadido: Esto crea el efecto de inversión */
+/* CURSOR — solo en dispositivos con mouse */
+@media(hover:hover) and (pointer:fine){
+  body{cursor:none;}
+  .cursor{
+    position:fixed;width:12px;height:12px;
+    background:#c8f542;border-radius:50%;
+    pointer-events:none;z-index:9999;
+    transition:transform .15s ease;
+    transform:translate(-50%,-50%);
+    mix-blend-mode:difference;
+  }
+  .cursor-ring{
+    position:fixed;width:40px;height:40px;
+    border:1px solid #c8f542;border-radius:50%;
+    pointer-events:none;z-index:9998;
+    transition:transform .4s ease,width .3s,height .3s;
+    transform:translate(-50%,-50%);
+    mix-blend-mode:difference;
+  }
+  .cursor.expand{transform:translate(-50%,-50%) scale(3);}
+  .cursor-ring.expand{width:60px;height:60px;}
 }
-.cursor-ring{
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  border: 1px solid #c8f542; /* Cambiado a blanco */
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  transition: transform .4s ease, width .3s, height .3s;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: difference; /* Añadido: El anillo también invertirá colores */
+/* En móvil el cursor se oculta */
+@media(hover:none){
+  .cursor,.cursor-ring{display:none;}
 }
-.cursor.expand{transform:translate(-50%,-50%) scale(3);}
-.cursor-ring.expand{width:60px;height:60px;}
 
 /* NAV */
 nav{
@@ -588,26 +586,115 @@ footer{
 .hscroll-inner::-webkit-scrollbar{display:none;}
 
 /* MOBILE NAV TOGGLE */
-.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;}
-.nav-toggle span{display:block;width:24px;height:1.5px;background:var(--text);}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.25rem;}
+.nav-toggle span{display:block;width:24px;height:1.5px;background:var(--text);transition:all .3s;}
+.nav-toggle.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px);}
+.nav-toggle.open span:nth-child(2){opacity:0;}
+.nav-toggle.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px);}
+
+/* Menú móvil desplegable */
+.nav-mobile-menu{
+  display:none;
+  position:fixed;top:65px;left:0;right:0;
+  background:rgba(10,10,10,.97);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  z-index:99;padding:1.5rem 2rem;
+  flex-direction:column;gap:0;
+}
+.nav-mobile-menu.open{display:flex;}
+.nav-mobile-menu a{
+  color:var(--muted);text-decoration:none;
+  font-size:1rem;letter-spacing:2px;text-transform:uppercase;
+  padding:1rem 0;border-bottom:1px solid var(--border);
+  transition:color .3s;
+}
+.nav-mobile-menu a:last-child{border-bottom:none;}
+.nav-mobile-menu a:hover{color:var(--accent);}
 
 @media(max-width:900px){
-  nav{padding:1.25rem 2rem;}
+  nav{padding:1rem 1.5rem;}
   .nav-links{display:none;}
   .nav-toggle{display:flex;}
-  .hero{grid-template-columns:1fr;padding:6rem 2rem 4rem;gap:3rem;}
+  .nav-placeholder{display:none;}
+
+  .hero{grid-template-columns:1fr;padding:5.5rem 1.5rem 4rem;gap:2.5rem;}
   .hero-right{align-items:flex-start;}
-  section{padding:5rem 2rem;}
-  .services-grid{grid-template-columns:1fr;}
+  .hero-stats{width:100%;}
+  .hero-title{font-size:clamp(3rem,14vw,5rem);}
+
+  section{padding:4rem 1.5rem;}
+  .gallery-section{padding:4rem 0;}
+  .gallery-header{padding:0 1.5rem;margin-bottom:2rem;}
+
+  /* Clientes grid: 2 columnas en tablet, 1 en móvil */
+  .clients-grid{grid-template-columns:1fr 1fr !important;}
+
+  .services-grid{grid-template-columns:1fr !important;}
+  .service-item[style*="grid-column:span 2"]{grid-column:span 1 !important;}
+  .service-item .service-list[style*="grid-template-columns"]{grid-template-columns:1fr !important;}
+
   .projects-grid{grid-template-columns:1fr;}
   .project-card.featured{grid-column:span 1;}
-  .timeline{grid-template-columns:1fr;gap:3rem;}
-  .contact-grid{grid-template-columns:1fr;gap:3rem;}
-  footer{padding:2rem;}
+
+  .timeline{grid-template-columns:1fr;gap:2.5rem;}
+
+  .contact-grid{grid-template-columns:1fr;gap:2.5rem;}
+
+  footer{padding:1.5rem;flex-direction:column;text-align:center;gap:.75rem;}
+  .footer-links{flex-wrap:wrap;justify-content:center;}
+
   .testimonials-grid{grid-template-columns:1fr;}
   .form-grid{grid-template-columns:1fr;}
-  .gallery-header{padding:0 2rem;}
-  .carousel-track{padding:0 2rem;}
+
+  /* About section grid */
+  #sobre-mi > div{grid-template-columns:1fr !important;gap:3rem !important;}
+
+  /* Carrusel */
+  .carousel-track{padding:0 1.5rem;}
+  .carousel-card{flex:0 0 calc(100vw - 3rem);}
+  .carousel-btn{display:none;}
+
+  /* Scroll indicator */
+  .scroll-indicator{display:none;}
+}
+
+@media(max-width:480px){
+  nav{padding:.9rem 1.25rem;}
+  .nav-logo{font-size:1.3rem;}
+  .nav-cta{padding:.4rem 1rem;font-size:.72rem;}
+
+  .hero{padding:5rem 1.25rem 3rem;gap:2rem;}
+  .hero-tag{font-size:.65rem;}
+  .hero-title{font-size:clamp(2.8rem,13vw,4rem);}
+  .hero-title em{font-size:clamp(1.5rem,7vw,2.5rem);}
+  .hero-desc{font-size:.9rem;}
+  .hero-stats{grid-template-columns:1fr 1fr;}
+  .stat-num{font-size:2.2rem;}
+  .hero-btns{flex-direction:column;}
+  .btn-primary,.btn-outline{text-align:center;}
+
+  section{padding:3.5rem 1.25rem;}
+  .gallery-section{padding:3.5rem 0;}
+  .gallery-header{padding:0 1.25rem;}
+  .carousel-track{padding:0 1.25rem;}
+  .carousel-card{flex:0 0 calc(100vw - 2.5rem);}
+  .card-visual{height:220px;}
+
+  .clients-grid{grid-template-columns:1fr !important;}
+
+  .section-title{font-size:clamp(2rem,10vw,3rem);}
+
+  .service-item{padding:1.75rem 1.25rem;}
+
+  footer{padding:1.25rem;font-size:.72rem;}
+  .footer-logo{font-size:1rem;}
+
+  .contact-val{font-size:.88rem;word-break:break-all;}
+
+  .hero-meta{gap:1rem;}
+
+  .nav-mobile-menu{top:58px;}
 }
 </style>
 </head>
@@ -629,8 +716,19 @@ footer{
     <li><a href="#clientes">Clientes</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
- <div class="nav-placeholder"></div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MENÚ MÓVIL -->
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="#sobre-mi" onclick="closeMobileMenu()">Sobre mí</a>
+  <a href="#servicios" onclick="closeMobileMenu()">Servicios</a>
+  <a href="#galeria" onclick="closeMobileMenu()">Portafolio</a>
+  <a href="#clientes" onclick="closeMobileMenu()">Clientes</a>
+  <a href="#contacto" onclick="closeMobileMenu()">Contacto</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="inicio">
@@ -765,7 +863,7 @@ footer{
   <div class="section-tag reveal">Con quiénes he trabajado</div>
   <h2 class="section-title reveal">Marcas que <span>Confían</span></h2>
   <p class="reveal" style="color:var(--muted);max-width:500px;margin-top:.7rem;font-size:.95rem;">Empresas y productoras que apostaron por el diseño como herramienta de crecimiento y comunicación.</p>
-  <div class="reveal" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:3rem;">
+  <div class="reveal clients-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:3rem;">
     <div style="background:var(--bg2);padding:2.5rem 2rem;display:flex;flex-direction:column;gap:.7rem;transition:background .3s;" onmouseenter="this.style.background='var(--bg3)'" onmouseleave="this.style.background='var(--bg2)'">
       <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;color:var(--accent);">DEL BARRIO PRO.</div>
       <div style="font-size:.75rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">Productora</div>
@@ -1290,6 +1388,18 @@ footer{
 </footer>
 
 <script>
+// MOBILE NAV MENU
+const navToggle = document.getElementById('navToggle');
+const navMobileMenu = document.getElementById('navMobileMenu');
+function closeMobileMenu(){
+  navToggle.classList.remove('open');
+  navMobileMenu.classList.remove('open');
+}
+navToggle.addEventListener('click',()=>{
+  navToggle.classList.toggle('open');
+  navMobileMenu.classList.toggle('open');
+});
+
 // CURSOR
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
