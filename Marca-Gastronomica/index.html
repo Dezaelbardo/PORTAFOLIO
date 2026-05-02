@@ -36,37 +36,31 @@ body{
   font-size:16px;
   line-height:1.6;
   overflow-x:hidden;
-  cursor:none;
 }
 
-/* CURSOR */
-body{cursor:none;}
-.cursor{
-  position: fixed;
-  width: 12px;
-  height: 12px;
-  background: #c8f542; /* Cambiado a blanco para que la inversión sea total */
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transition: transform .15s ease;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: difference; /* Añadido: Esto crea el efecto de inversión */
+/* CURSOR — solo en dispositivos con mouse */
+@media(hover:hover) and (pointer:fine){
+  body{cursor:none;}
+  .cursor{
+    position:fixed;width:12px;height:12px;
+    background:#c8f542;border-radius:50%;
+    pointer-events:none;z-index:9999;
+    transition:transform .15s ease;
+    transform:translate(-50%,-50%);
+    mix-blend-mode:difference;
+  }
+  .cursor-ring{
+    position:fixed;width:40px;height:40px;
+    border:1px solid #c8f542;border-radius:50%;
+    pointer-events:none;z-index:9998;
+    transition:transform .4s ease,width .3s,height .3s;
+    transform:translate(-50%,-50%);
+    mix-blend-mode:difference;
+  }
+  .cursor.expand{transform:translate(-50%,-50%) scale(3);}
+  .cursor-ring.expand{width:60px;height:60px;}
 }
-.cursor-ring{
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  border: 1px solid #c8f542; /* Cambiado a blanco */
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  transition: transform .4s ease, width .3s, height .3s;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: difference; /* Añadido: El anillo también invertirá colores */
-}
-.cursor.expand{transform:translate(-50%,-50%) scale(3);}
-.cursor-ring.expand{width:60px;height:60px;}
+@media(hover:none){.cursor,.cursor-ring{display:none;}}
 
 /* NAV */
 nav{
@@ -378,14 +372,62 @@ footer{
 
 @media(max-width:900px){
   nav{padding:1rem 1.5rem;}
-  .project-hero{padding:6rem 1.5rem 3rem;}
-  .section{padding:4rem 1.5rem;}
+  .nav-back span:last-child,.nav-back-text{display:none;}
+  .nav-back::after{content:'← Volver';}
+  .nav-right .nav-cta{padding:.4rem 1rem;font-size:.72rem;}
+
+  .project-hero{padding:5.5rem 1.5rem 3rem;}
+  .hero-content{max-width:100%;}
+  .project-title{font-size:clamp(2.8rem,12vw,5rem);}
+  .project-subtitle{font-size:.95rem;}
+  .hero-meta{gap:1.25rem;flex-wrap:wrap;}
+
+  .section{padding:3.5rem 1.5rem;}
+  .section > div[style*="grid-template-columns:1fr 2fr"]{
+    display:block !important;
+  }
+  .section > div[style*="grid-template-columns:1fr 2fr"] > div:first-child{
+    margin-bottom:1.5rem;
+  }
+
   .media-grid-2,.media-grid-3{grid-template-columns:1fr;}
+  .media-grid-3 .media-item[style*="grid-column:span 2"]{grid-column:span 1 !important;}
   .media-featured{grid-template-columns:1fr;}
+  .media-featured-text{padding:2rem 1.5rem;}
+
   .info-grid{grid-template-columns:1fr 1fr;}
   .project-nav{grid-template-columns:1fr;}
-  footer{padding:1.5rem;}
-  .hero-meta{gap:1.5rem;}
+  .project-nav-item{padding:1.75rem 1.5rem;}
+  footer{padding:1.25rem;flex-direction:column;text-align:center;gap:.5rem;}
+
+  /* CTA block */
+  div[style*="justify-content:space-between"]{flex-direction:column !important;align-items:flex-start !important;}
+
+  /* Resultado métricas */
+  div[style*="display:flex;gap:3rem;flex-wrap:wrap;margin-top:1.5rem"]{gap:1.5rem !important;}
+
+  .scroll-down{display:none;}
+}
+
+@media(max-width:480px){
+  nav{padding:.85rem 1rem;}
+  .nav-logo{font-size:1.2rem;}
+  .nav-back{font-size:.7rem;}
+  .nav-right .nav-cta{display:none;}
+
+  .project-hero{padding:5rem 1rem 2.5rem;}
+  .project-title{font-size:clamp(2.4rem,11vw,4rem);}
+  .project-subtitle{font-size:.88rem;}
+  .hero-meta{gap:1rem;}
+  .meta-val{font-size:.85rem;}
+
+  .section{padding:3rem 1rem;}
+  .info-grid{grid-template-columns:1fr;}
+  .project-nav-item{padding:1.5rem 1rem;}
+  .pn-title{font-size:1.4rem;}
+  footer{padding:1rem;}
+  .footer-logo{font-size:.95rem;}
+  .footer-copy{font-size:.68rem;}
 }
 </style>
 </head>
