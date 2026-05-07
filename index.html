@@ -680,7 +680,7 @@ footer{
   .hero-stats{grid-template-columns:1fr 1fr;}
   .stat-num{font-size:2.2rem;}
   .hero-btns{flex-direction:column;}
-  .btn-primary,.btn-outline{text-align:center;}
+  .btn-primary,.btn-outline{text-align:center;justify-content:center;}
 
   section{padding:3.5rem 1.25rem;}
   .gallery-section{padding:3.5rem 0;}
@@ -703,6 +703,8 @@ footer{
   .hero-meta{gap:1rem;}
 
   .nav-mobile-menu{top:58px;}
+
+  .vm-grid{grid-template-columns:1fr !important;}
 }
 </style>
 </head>
@@ -886,7 +888,7 @@ footer{
       <!-- VISIÓN & MISIÓN -->
   <div class="reveal" style="margin-top:4rem;padding-top:3rem;border-top:1px solid var(--border);">
     <div style="font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-family:'Space Mono',monospace;margin-bottom:2rem;">Visión & Misión</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+    <div class="vm-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
  
       <div style="background:rgba(200,245,66,.03);border:0.5px solid rgba(200,245,66,.15);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:2rem;">
         <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
